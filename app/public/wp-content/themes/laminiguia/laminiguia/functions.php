@@ -138,9 +138,11 @@ add_action( 'widgets_init', 'laminiguia_widgets_init' );
  * Enqueue scripts and styles.
  */
 function laminiguia_scripts() {
-	wp_enqueue_style( 'laminiguia-style', get_stylesheet_uri(), array(), _S_VERSION );
+	wp_enqueue_style( 'laminiguia-style', get_template_directory_uri()."/style.css", array('laminiguia-style2'), _S_VERSION );
+	wp_enqueue_style( 'laminiguia-style2', get_template_directory_uri()."/style-ref.css", array(), _S_VERSION );
+	wp_enqueue_style( 'laminiguia-fonts', "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap", array(), null);
 	wp_style_add_data( 'laminiguia-style', 'rtl', 'replace' );
-
+	
 	wp_enqueue_script( 'laminiguia-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

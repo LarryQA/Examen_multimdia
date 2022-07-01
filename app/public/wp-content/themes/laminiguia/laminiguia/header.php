@@ -23,21 +23,35 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'laminiguia' ); ?></a>
+<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'laminiguia' ); ?></a>
 
-	<header id="masthead" class="site-header">
-		<div class="site-branding">
+	<header>
+		<div>
 			<?php
 			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+			?>
+				<div class = "barra-superior">
+
+				<div class = "sub-barra">
+					<img src="http://laminiguia.local/wp-content/uploads/2022/07/image.png" alt="Menú">
+						<div>
+							<img src="http://laminiguia.local/wp-content/uploads/2022/07/search-icon.png">
+							<input id = "buscar" type="text" placeholder="Buscar algo">
+						</div>
+					</div>
+					
+					<div>
+					
+					<img src="http://laminiguia.local/wp-content/uploads/2022/07/notificacion.png">
+					<img src="http://laminiguia.local/wp-content/uploads/2022/07/carrito-de-compras.png">
+					<button class = "btn">Regístrate</button>
+					<button class = "btn">Iniciar Sesión</button>
+					</div>
+					
+
+					
+				</div>
 				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
 			$laminiguia_description = get_bloginfo( 'description', 'display' );
 			if ( $laminiguia_description || is_customize_preview() ) :
 				?>

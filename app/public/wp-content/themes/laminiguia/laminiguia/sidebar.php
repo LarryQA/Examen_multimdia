@@ -12,6 +12,7 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 }
 ?>
 
-<aside id="secondary" class="widget-area">
+<aside id="main-bar" class="widget-area">
+<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 	<?php dynamic_sidebar( 'sidebar-1' ); ?>
 </aside><!-- #secondary -->
