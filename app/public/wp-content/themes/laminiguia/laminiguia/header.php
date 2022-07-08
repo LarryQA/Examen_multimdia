@@ -25,49 +25,25 @@
 <div id="page" class="site">
 <a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'laminiguia' ); ?></a>
 
-	<header>
-		<div>
-			<?php
-			the_custom_logo();
-			?>
-				<div class = "barra-superior">
+	<header class = "barra-superior">
 
-				<div class = "sub-barra">
-					<img src="http://laminiguia.local/wp-content/uploads/2022/07/image.png" alt="Menú">
-						<div>
+
+					<div id = "show2" class = "sub-barra">
+	
+						<a href="#" class= "abrir-barra"><img src="http://laminiguia.local/wp-content/uploads/2022/07/image.png" alt="Menú" ></a>
+						
+							<div>
 							<img src="http://laminiguia.local/wp-content/uploads/2022/07/search-icon.png">
 							<input id = "buscar" type="text" placeholder="Buscar algo">
-						</div>
+							</div>
 					</div>
-					
-					<div>
-					
+
+					<div id = "show" class = "sub-barra do-not-show">
 					<img src="http://laminiguia.local/wp-content/uploads/2022/07/notificacion.png">
 					<img src="http://laminiguia.local/wp-content/uploads/2022/07/carrito-de-compras.png">
 					<button class = "btn">Regístrate</button>
 					<button class = "btn">Iniciar Sesión</button>
 					</div>
-					
 
-					
-				</div>
-				<?php
-			$laminiguia_description = get_bloginfo( 'description', 'display' );
-			if ( $laminiguia_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $laminiguia_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'laminiguia' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

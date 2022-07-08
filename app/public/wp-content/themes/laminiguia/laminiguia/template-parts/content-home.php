@@ -9,28 +9,23 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
+<article id="post-<?php the_ID(); ?>" <?php post_class("cursos_class"); ?> >
+
+		<header class="post-centro">
+		
+
+		<img class="thumbnail_settings" src="<?php the_post_thumbnail_url(); ?>" alt="Imagen">
+
 		<?php
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
 		else :
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
-
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				laminiguia_posted_on();
-				laminiguia_posted_by();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
+		?>
 	</header><!-- .entry-header -->
 
-	<?php laminiguia_post_thumbnail(); ?>
-
+	
 	<div class="entry-content">
 		<?php
 		the_content(

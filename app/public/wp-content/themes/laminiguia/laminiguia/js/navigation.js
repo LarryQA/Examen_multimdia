@@ -97,3 +97,63 @@
 		}
 	}
 }() );
+
+const abrir = document.querySelector('.abrir-barra');
+abrir.addEventListener('click', abrirBarraLateral);
+
+function abrirBarraLateral(){
+	
+	if(document.getElementById("id-bar").offsetWidth == 0){
+		if(matchMedia("(min-width: 320px && max-width: 480px)").matches){
+			document.getElementById("id-bar").style.padding ='0 1% 1% 1%'
+			document.getElementById("id-bar").style.width ='55%'
+			document.querySelector('.principal').style.width ='45%'
+		}
+		if(matchMedia("(min-width: 481px && max-width: 768px)").matches){
+			document.getElementById("id-bar").style.padding ='0 1% 1% 1%'
+			document.getElementById("id-bar").style.width ='40%'
+			document.querySelector('.principal').style.width ='60%'
+		}
+		if(matchMedia("(min-width: 769px && max-width: 1024px)").matches){
+			document.getElementById("id-bar").style.padding ='0 1% 1% 1%'
+			document.getElementById("id-bar").style.width ='25%'
+			document.querySelector('.principal').style.width ='75%'
+		}
+		if(matchMedia("(min-width: 1025px)").matches){
+			document.getElementById("id-bar").style.padding ='0 1% 1% 1%'
+			document.getElementById("id-bar").style.width ='20%'
+			document.querySelector('.principal').style.width ='80%'
+		}
+		if(matchMedia("(min-width: 1431px)").matches){
+			document.getElementById("id-bar").style.padding ='0 1% 1% 1%'
+			document.getElementById("id-bar").style.width ='20%'
+			document.querySelector('.principal').style.width ='80%'
+		}
+		var x = document.getElementById("show")
+		x.style.width = "0"
+		document.getElementById("show2").style.width ='100%'
+	}
+	else{
+		document.getElementById("id-bar").style.width ='0'
+		document.getElementById("id-bar").style.padding ='0'
+		document.querySelector('.principal').style.width ='100%'
+		var x = document.getElementById("show")
+		x.style.width = "45%"
+		
+		if(matchMedia("(min-width: 1025px)").matches || matchMedia("(min-width: 1431px)").matches){
+			document.getElementById("show2").style.width ='45%'
+		}
+		else{
+			document.getElementById("show2").style.width ='100%'
+
+		}
+	
+	}
+	
+}
+
+function cerrarBarraLateral(){
+	document.getElementById("id-bar").style.width ='0'
+	document.getElementById("id-bar").style.padding ='0'
+	document.getElementById("id-content").style.width ='100%'
+}

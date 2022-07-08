@@ -15,7 +15,7 @@
 	</header><!-- .entry-header -->
 
 	<?php laminiguia_post_thumbnail(); ?>
-
+	
 	<div class="entry-content">
 		<?php
 		the_content();

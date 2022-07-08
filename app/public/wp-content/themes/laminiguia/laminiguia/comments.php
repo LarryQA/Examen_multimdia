@@ -27,36 +27,43 @@ if ( post_password_required() ) {
 	if ( have_comments() ) :
 		?>
 		<h2 class="comments-title">
-			<?php
-			$laminiguia_comment_count = get_comments_number();
-			if ( '1' === $laminiguia_comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'laminiguia' ),
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			} else {
-				printf( 
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $laminiguia_comment_count, 'comments title', 'laminiguia' ) ),
-					number_format_i18n( $laminiguia_comment_count ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					'<span>' . wp_kses_post( get_the_title() ) . '</span>'
-				);
-			}
-			?>
+			Opiniones
 		</h2><!-- .comments-title -->
 
-		<?php the_comments_navigation(); ?>
+		<?php if( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ): ?>
+		
+		<nav id="comment-nav-bottom" class="comment-navigation" role="navigation">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6">
+					<div class="post-link-nav">
+						<span class="sunset-icon sunset-chevron-left" aria-hidden="true"></span> 
+						<?php previous_comments_link( esc_html__( 'Older Comments', 'sunsettheme' ) ) ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 text-right">
+					<div class="post-link-nav">
+						<?php next_comments_link( esc_html__( 'Newer Comments', 'sunsettheme' ) ) ?>
+						<span class="sunset-icon sunset-chevron-right" aria-hidden="true"></span>
+					</div>
+				</div>
+			</div><!-- .row -->
+		</nav>
+		
+	<?php endif; ?>
 
 		<ol class="comment-list">
-			<?php
-			wp_list_comments(
-				array(
-					'style'      => 'ol',
-					'short_ping' => true,
-				)
+		<?php 
+			
+			$args = array(
+				'style'				=> 'ol',
+				'type'				=> 'all',
+				'reply_text'		=> 'Responder',
+				'avatar_size'		=> 40,
+				'echo'				=> true
 			);
-			?>
+			
+			wp_list_comments( $args );
+		?>
 		</ol><!-- .comment-list -->
 
 		<?php
@@ -73,5 +80,7 @@ if ( post_password_required() ) {
 
 	comment_form();
 	?>
+
+	
 
 </div><!-- #comments -->

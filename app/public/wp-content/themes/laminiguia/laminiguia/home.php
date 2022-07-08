@@ -1,61 +1,43 @@
-
-<div class="site-main">
-<?php
-get_header();
-?>
-
-<main>
-
-		<?php
-		if ( have_posts() ) :
-
-			if ( is_home() ) :
-				?>
-				<header>
-					<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-           
-				</header>
+<div class="outter">
+	<div class="main-wrap">
+		<div id= "id-content" class="principal">
 				<?php
-			endif;
+				get_header();
+				?>
+			<div class = post-wrap>
 
-			/* Start the Loop */
-			while ( have_posts() ) :
-				the_post();
+				<?php
+				 $args = array(  
+					'post_type' => 'cursos',
+					'post_status' => 'publish',
+					'posts_per_page' => 8, 
+					'orderby' => 'title', 
+					'order' => 'ASC', 
+				);
 
-				/*
-				 * Include the Post-Type-specific template for the content.
-				 * If you want to override this in a child theme, then include a file
-				 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-				 */
-				get_template_part( 'template-parts/content', get_post_type() );
+				$loop = new WP_Query($args ); 
+				if ($loop->have_posts()) :
 
-			endwhile;
+				/* Start the Loop */
+				while ($loop->have_posts()) :
+					$loop->the_post();
+					get_template_part('template-parts/content', 'home');
 
-			the_posts_navigation();
+				endwhile;
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
+				endif;
+				?>
+			</div><!-- #main -->
+		</div>
+		
+	</div>
+	<?php
+		get_sidebar();
 		?>
-	</main><!-- #main -->
-
 </div>
-
-<aside>
 <?php
-get_sidebar();
-?>
-</aside>
-
-<?php
-get_footer();
+		get_footer();
 ?>
 
 
-
-
-
-	
 

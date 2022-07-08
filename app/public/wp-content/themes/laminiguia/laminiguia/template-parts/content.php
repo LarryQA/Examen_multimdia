@@ -28,7 +28,7 @@
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-
+	<h2>V:</h2>
 	<?php laminiguia_post_thumbnail(); ?>
 
 	<div class="entry-content">

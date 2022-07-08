@@ -11,7 +11,14 @@ if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.0.0' );
 }
-
+/*
+add_filter( 'post_class', 'remove_hentry_function', 20 );
+function remove_hentry_function( $classes ) {
+	if( ( $key = array_search( 'post', $classes ) ) !== false )
+		unset( $classes[$key] );
+	return $classes;
+}
+*/
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -45,13 +52,6 @@ function laminiguia_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
-
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'laminiguia' ),
-		)
-	);
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
@@ -102,6 +102,25 @@ function laminiguia_setup() {
 }
 add_action( 'after_setup_theme', 'laminiguia_setup' );
 
+function laminiguia_menus(){
+	$locations = array(
+		'primary' => "Barra lateral principal",
+		'footer' => "Menú del footer"
+	);
+	register_nav_menus($locations);
+}
+
+
+add_action('init','laminiguia_menus');
+
+if (!function_exists('register_menu_walker')):
+	function register_menu_walker(){
+		require('inc/walker-menu.php');
+	}
+endif;
+
+add_action( 'after_setup_theme', 'register_menu_walker');
+
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
  *
@@ -138,12 +157,12 @@ add_action( 'widgets_init', 'laminiguia_widgets_init' );
  * Enqueue scripts and styles.
  */
 function laminiguia_scripts() {
-	wp_enqueue_style( 'laminiguia-style', get_template_directory_uri()."/style.css", array('laminiguia-style2'), _S_VERSION );
+	wp_enqueue_style( 'laminiguia-style', get_template_directory_uri()."/style.css", array(), _S_VERSION );
 	wp_enqueue_style( 'laminiguia-style2', get_template_directory_uri()."/style-ref.css", array(), _S_VERSION );
 	wp_enqueue_style( 'laminiguia-fonts', "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap", array(), null);
 	wp_style_add_data( 'laminiguia-style', 'rtl', 'replace' );
 	
-	wp_enqueue_script( 'laminiguia-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
+	wp_enqueue_script( 'laminiguia-navigation', get_template_directory_uri().'/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
