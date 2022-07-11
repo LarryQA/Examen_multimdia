@@ -157,3 +157,45 @@ function cerrarBarraLateral(){
 	document.getElementById("id-bar").style.padding ='0'
 	document.getElementById("id-content").style.width ='100%'
 }
+
+const btn_info = document.getElementById("btn-info")
+const btn_cont = document.getElementById("btn-cont")
+const cont_info = document.getElementById("cont-info")
+const cont_cont = document.getElementById("cont-cont")
+
+let op = 1
+
+const cambiar_op = () => {
+
+	op == 1 ? (
+		btn_info.classList.value = 'li-activo',
+		cont_info.classList.value = 'cont cont-active'
+	):
+	(
+		btn_info.classList.value = 'li-norm',
+		cont_info.classList.value = 'cont'
+	)
+
+	op == 2 ? (
+		btn_cont.classList.value = 'li-activo',
+		cont_cont.classList.value = 'cont cont-active'
+	):
+	(
+		btn_cont.classList.value = 'li-norm',
+		cont_cont.classList.value = 'cont'
+	)
+
+}
+btn_info.addEventListener( 'click', ()=> {
+	op = 1;
+	cambiar_op();
+}
+)
+btn_cont.addEventListener( 'click', ()=> {
+	op = 2;
+	cambiar_op();
+}
+)
+
+
+

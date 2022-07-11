@@ -3,20 +3,18 @@ html{
 }
 
 h1 {
-    height: 22px;
-    left: 19.44%;
-    right: 73.75%;
-    top: calc(50% - 22px/2 - 847.5px);
+    height: 30px;
+    left: 800px;
+    right: 800px;
     text-align: center;
 
 }
 
 h3 {
 
-    height: 21px;
-    left: 25.97%;
-    right: 54.24%;
-    top: calc(50% - 21px/2 - 811px);
+    height: 30px;
+    left: 400px;
+    right: 800px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
@@ -28,7 +26,7 @@ h3 {
 }
 
 .todo {
-    width: 100%;
+    width: 1500px;
     display: flex;
     flex-flow: row;
     flex-direction: row;
@@ -37,7 +35,7 @@ h3 {
 }
 
 .todo p {
-    width: 45%;
+    width: 700px;
     height: 305px;
     left: 310px;
     top: 883px;
@@ -56,14 +54,14 @@ h3 {
 }
 
 .contenido-lateral{
-    width: 80%;
+    width: 1250px;
     display: flex;
     flex-direction: column;
 }
 
 .container {
     margin: 2px;
-    width: 25%;
+    width: 350px;
     height: 950px;
     background: #f8f5f5;
     border-radius: 16px;
@@ -80,12 +78,12 @@ h3 {
 }
 
 .cuadro{
-    margin: 15%;
-    left: 25%;
+    margin: 160px;
+    left: 150px;
     height: 230px;
-right: 40%;
-top: 84.27%;
-bottom: 8.65%;
+right: 200px;
+top: 500px;
+bottom: 100px;
 
     
     background: #e5e5ec;
@@ -111,7 +109,7 @@ border-radius: 16px;
 .Contenedor {
     color: #102844;
     height: 28vh;
-    margin: 9%;
+    margin: 10px;
 
 
     display: flex;
@@ -133,13 +131,12 @@ button{
 
 h3{
     height: 22px;
-    left: 19.44%;
-    right: 73.75%;
-    top: calc(50% - 22px/2 - 847.5px);
+    left: 400px;
+    right: 150px;
     text-align: center;
 }
 .arcu{
-    margin: 1%;
+    margin: 10px;
     width: 222px;
     height: 50px;
     left: 1126px;
@@ -152,24 +149,10 @@ border-radius: 6px;
 }
 
 
-
-
-.carito{
-    left: 1127px;
-    right: 62px;
-    top: 40%;
-    bottom: 83.71%;
-    
-    background: #4C6FFF;
-    border-radius: 6px;
-
-}
 h4{
     height: 20px;
-left: 85.83%;
-right: 9.31%;
-top: calc(50% - 20px/2 - 692.5px);
-
+left: 100px;
+right: 80px;
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 600;
@@ -185,9 +168,9 @@ color: #FFFFFF;
 li{
    margin: 22px;
     height: 22px;
-left: 78.19%;
-right: 11.18%;
-top: calc(50% - 22px/2 - 584.5px);
+left: 200px;
+right: 150px;
+
 
 
 
@@ -244,10 +227,8 @@ border-radius: 24px;
 
 .otro{
     height: 0px;
-left: 78.19%;
-right: 9.68%;
-top: calc(50% - 22px/2 - 414.5px);
-
+left: 100px;
+right: 80px;
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 500;
@@ -270,24 +251,7 @@ color: #102844;
     border-radius: 16px;
 }
 
-.linea{
-    position: absolute;
-left: 24.31%;
-right: 52%;
-height: 9px;
-top: 84.49%;
 
-
-background: #FF7800;
-border-radius: 10px;
-
-display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:flex-end;
-
-    
-}
 
 
 .boton2{
@@ -297,17 +261,10 @@ justify-content: center;
 align-items: center;
 padding: 16px 40px;
 gap: 10px;
-
 width: 150px;
 height: 50px;
-
-/* Main Color */
-
 background: #4C6FFF;
 border-radius: 6px;
-
-/* Inside auto layout */
-
 flex: none;
 order: 0;
 flex-grow: 0;
@@ -321,12 +278,8 @@ flex-grow: 0;
     
 position: absolute;
 height: 20px;
-left: 21.53%;
-right: 64.31%;
-top: calc(50% - 22px/2 + 328px);
-
-
-
+left: 150px;
+right: 140px;
 font-family: 'Poppins';
 font-style: normal;
 font-weight: 500;

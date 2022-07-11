@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying posts
  *
@@ -9,47 +10,45 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class("cursos_class"); ?> >
+<article id="post-<?php the_ID(); ?>" <?php post_class("cursos_class"); ?>>
 
-		<header class="post-centro">
-		
+	<header class="post-centro">
+
 
 		<img class="thumbnail_settings" src="<?php the_post_thumbnail_url(); ?>" alt="Imagen">
 
 		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
+		
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
 		?>
 	</header><!-- .entry-header -->
 
-	
-	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'laminiguia' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'laminiguia' ),
-				'after'  => '</div>',
-			)
-		);
+	<div class="entry-content">
+
+	<?php
+
+		$desc = get_post_meta(get_the_ID(), 'informacion_del_curso_descuento', true);
+		$precio = get_post_meta(get_the_ID(), 'informacion_del_curso_precio', true);
+
+		if($precio){
+			$precio_f =  ($desc > 0) ? $precio - ($precio * ($desc / 100)) : $precio;
+			$signo = '$';
+		}
+		else{
+			$precio_f = 'Gratis';
+			$signo = null;
+		}
 		?>
+
+		<div class="el_precio_ent">
+			<p>			
+				<?php
+				echo $signo;
+				echo $precio_f;
+				?>
+			</p>
+		</div>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">

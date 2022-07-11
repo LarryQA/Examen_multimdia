@@ -25,109 +25,212 @@
             <div class="h1">
 
                 <?php the_title('<h1 class="entry-title">', '</h1>'); ?>
-                <h5 class="By">By Simon Shaw, Illustrator and 3D designer</h5>
+                <p class="By">Por <b><?php $disponible = get_post_meta(get_the_ID(), 'informacion_del_curso_autor-del-curso', true);
+                                        echo $disponible ?>,</b> <?php $disponible = get_post_meta(get_the_ID(), 'informacion_del_curso_ocupacion', true);
+                                                                    echo $disponible ?></p>
             </div>
 
             <ul class="barra-contenido">
-                <li class="im">Informacion</li>
-                <li>Content</li>
-                <li>Community</li>
-                <li>Students</li>
+                <li id="btn-info" class="li-activo">Información</li>
+                <li id="btn-cont" class="li-norm">Contenido</li>
+                <li>Comunidad</li>
+                <li>Estudiantes</li>
 
             </ul>
 
-            <div class="Contenedor-texto">
+            <div id = "cont-info" class="cont cont-active">
+                <div class="Contenedor-texto" >
 
-                <p> <?php
-                    the_content(
-                        sprintf(
-                            wp_kses(
-                                /* translators: %s: Name of current post. Only visible to screen readers */
-                                __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'laminiguia'),
-                                array(
-                                    'span' => array(
-                                        'class' => array(),
-                                    ),
-                                )
-                            ),
-                            wp_kses_post(get_the_title())
-                        )
-                    );
+                    <p> <?php
+                        the_content(
+                            sprintf(
+                                wp_kses(
+                                    /* translators: %s: Name of current post. Only visible to screen readers */
+                                    __('Continue reading<span class="screen-reader-text"> "%s"</span>', 'laminiguia'),
+                                    array(
+                                        'span' => array(
+                                            'class' => array(),
+                                        ),
+                                    )
+                                ),
+                                wp_kses_post(get_the_title())
+                            )
+                        );
 
-                    wp_link_pages(
-                        array(
-                            'before' => '<div class="page-links">' . esc_html__('Pages:', 'laminiguia'),
-                            'after'  => '</div>',
-                        )
-                    );
+                        wp_link_pages(
+                            array(
+                                'before' => '<div class="page-links">' . esc_html__('Pages:', 'laminiguia'),
+                                'after'  => '</div>',
+                            )
+                        );
+                        ?>
+                    </p>
+
+
+                </div>
+
+                <?php
+
+                //If comments are open or we have at least one comment, load up the comment template.
+                if (comments_open() || get_comments_number()) :
+                    comments_template();
+                endif;
+                ?>
+
+            </div> <!-- cont-info -->
+
+            <div id = "cont-cont" class="cont">
+
+
+            </div>  <!-- cont-cont -->
+
+
+
+        </div>
+
+
+    </div>
+
+    <div class="barra-der">
+
+        <div class="carito">
+
+            <?php
+            $desc = get_post_meta(get_the_ID(), 'informacion_del_curso_descuento', true);
+            $precio = get_post_meta(get_the_ID(), 'informacion_del_curso_precio', true);
+
+            if ($precio) {
+                $precio_f =  ($desc > 0) ? $precio - ($precio * ($desc / 100)) : $precio;
+                $signo = '$';
+            } else {
+                $precio_f = 'Gratis';
+                $signo = null;
+            }
+
+            $precio_ant = ($desc > 0) ? $precio : null;
+            ?>
+            <div class="el_precio">
+                <p>
+                    USD
+                    <?php
+                    echo $precio_f;
+                    ?>
+                </p>
+            </div>
+
+            <div class="el_precio_ant">
+                <p>$</p>
+                <p id="id_descuento">
+                    <?php
+                    echo $precio_ant;
                     ?>
                 </p>
 
+                <div class="rayita">
+
+                </div>
 
             </div>
 
-            <?php
-
-            //If comments are open or we have at least one comment, load up the comment template.
-            if (comments_open() || get_comments_number()) :
-                comments_template();
-            endif;
-            ?>
-
 
         </div>
 
 
-    </div>
 
-    <div class="container">
-
-        <button id="button" type="button">
-            <h1> USD 199.00</h1>
-            <h2>$250.00</h2>
-
-
+        <button id="btn-comprar" type="button">
+            Comprar ahora
         </button>
 
+        <div class="datos-generales">
 
+            <div>
+                <h2>Qué aprenderás</h2>
+                <p>
+                    <?php
+                    $desc = get_post_meta(get_the_ID(), 'informacion_del_curso_resumen', true);
+                    echo $desc
+                    ?>
+                </p>
+            </div>
 
+            <div>
+                <h2>Este curso incluye:</h2>
+                <ul class="lista-info">
+                    <li>
+                        <p>59 Lessons (9h 11m)</p>
+                    </li>
+                    <li>
+                        <p>6 courses</p>
+                    </li>
+                    <li>
+                        <p> <?php $disponible = get_post_meta(get_the_ID(), 'informacion_del_curso_disponible-en-la-app', true);
+                            echo $disponible ?></p>
+                    </li>
+                    <li>
+                        <p>Audio: <?php $audio = get_post_meta(get_the_ID(), 'informacion_del_curso_audio', true);
+                                    echo $audio ?></p>
+                    </li>
+                    <li>
+                        <p>Nivel: <?php $audio = get_post_meta(get_the_ID(), 'informacion_del_curso_dificultad-del-curso', true);
+                                    echo $audio ?></p>
+                    </li>
+                </ul>
 
-        <div class="carito" id="carito">
+            </div>
 
-            <h4>Buy Now</h4>
+            <div class="caja-cat">
+                <h2>Categorías</h2>
+                <span>
+                    <?php
+                    $arregloCat = get_the_category();
+                    if ($arregloCat) {
+                        foreach ($arregloCat as $cat) {
+                    ?>
+                            <a href="#"><span class="tag"><?php echo $cat->name ?></span></a>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <p>Curso sin categorizar</p>
 
+                    <?php
+                    }
+                    ?>
+
+                </span>
+
+            </div>
+
+            <div class="caja-cat">
+                <h2>Etiquetas</h2>
+                <span>
+                    <?php
+                    $posttags = get_the_tags();
+                    if ($posttags) {
+                        foreach ($posttags as $tag) {
+                    ?>
+
+                            <a href="#"><span class="tag"><?php echo $tag->name ?></span></a>
+
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <p>Curso no etiquetado</p>
+
+                    <?php
+                    }
+                    ?>
+                </span>
+
+            </div>
 
         </div>
 
-        <div lass="li" id="li"></div>
-        <h5>What you'll learn</h5>
-        <h5 class="By">Access to IBM Cloud modelling what is I was looking for and Aaron got me the solution.</h5>
-
-        <div class="otro" id="otro"></div>
-
-
-
-        <h1> This course includes:</h1>
-
-        <ul>
-            <li>100% Positive reviews (45)</li>
-            <li>2167 students</li>
-            <li>59 Lessons (9h 11m)</li>
-            <li>6 courses</li>
-            <li>70 downloads (70 files)</li>
-            <li>Available from the app</li>
-            <li>Audio: Spanish</li>
-            <li>Level:</li>
-
-        </ul>
-
     </div>
-
-
-
-
-
 </article><!-- #post-<?php the_ID(); ?> -->
+
+
 <footer class="entry-footer">
     <?php laminiguia_entry_footer(); ?>
 </footer><!-- .entry-footer -->
